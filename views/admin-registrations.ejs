@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%- include('partials/headlinks') %>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+      }
+
+      .pkg-details {
+        display: none;
+        width: 250px;
+        z-index: 4000;
+      }
+
+      .show {
+        display: block;
+      }
+    </style>
+</head>
+
+<body class="bg-secondary">
+  <h1 class="text-center my-5 text-white">Registrations</h1>
+  <div class="search container container-fluid mb-3"><input type="search" id="search" onkeyup="search()"
+      class="form-control" placeholder="Search by name, email, mobile no">
+  </div>
+  <div class="container-lg container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive p-3 table-scroll" data-mdb-perfect-scrollbar="true"
+              style="position: relative; height: 700px">
+              <table class="table table-striped mb-0">
+                <thead class="bg-primary">
+                  <tr>
+                    <th scope="col">Date & Time</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Person Count</th>
+                    <th scope="col">Adults</th>
+                    <th scope="col">Childrens</th>
+                    <th scope="col">Tour Date</th>
+                    <th scope="col">Selected Package</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  <%if(booking_details<=0){%>
+                    <div class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">No Registrations Avalaible</div>
+                  <%}else{%>
+                  <%booking_details.forEach((tr)=>{%>
+                    <tr>
+                      <td>
+                        <%const date=new Date(tr.createdAt).toLocaleString()%>
+                          <%=date%>
+                      </td>
+                      <td>
+                        <%=tr.Name%>
+                      </td>
+                      <td><a href="mailto:<%=tr.Email%>">
+                          <%=tr.Email%>
+                        </a></td>
+                      <td><a href="tel:<%=tr.Phone%>">
+                          <%=tr.Phone%>
+                        </a></td>
+                      <td>
+                        <%=tr.personCount%>
+                      </td>
+                      <td>
+                        <%if(tr.Adults!==0){%>
+                          <%=tr.Adults%>
+                            <%}%>
+                      </td>
+                      <td>
+                        <%if(tr.Childrens!==0){%>
+                          <%=tr.Childrens%>
+                            <%}%>
+                      </td>
+                      <td>
+                        <%=tr.Date%>
+                      </td>
+                      <%if(tr.selectedPackage===null){%>
+                      <td class="text-danger">
+                        Unable to find Selected Package
+                      </td>
+                      <%}else{%>
+                      <td class="position-relative"><a type="button" onclick="Open(this)" href="#">
+                          <%=tr.selectedPackage.Name%>
+                        </a>
+                        <div class="pkg-details bg-white position-absolute top-100 p-3 end-0 shadow-lg rounded">
+                          <button type="button" class="btn border-0 p-0" onclick="Close(this)"><i
+                              class="ri-close-circle-fill fs-3 pointer"></i></button>
+
+                          <h6 class="text-center my-1">
+                            <%=tr.selectedPackage.Name%>
+                          </h6>
+                          <h6 class="m-0">Destinations:-</h6>
+                          <ul class="p-0 m-0">
+                            <%tr.selectedPackage.Destinations.forEach((item,index)=>{%>
+                              <li class="font-secondary"><i class="ri-map-pin-fill me-1 text-primary"></i>
+                                <%=item%>
+                              </li>
+                              <%})%>
+                          </ul>
+                          <h6 class="m-0">Duration</h6>
+                          <p class="m-0">
+                            <%=tr.selectedPackage.Duration%>
+                          </p>
+                          <h6 class="m-0">Package Type</h6>
+                          <p class="m-0">
+                            <%=tr.selectedPackage.pkgType%>
+                          </p>
+                          <a href="/packages/details/<%=tr.selectedPackage._id%>">Veiw Full</a>
+                        </div>
+                      </td>
+                      <%}%>
+                    </tr>
+                    <%})%>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function search() {
+      let input, filter, table_body, tr, i;
+      input = document.getElementById("search");
+      filter = input.value.toLowerCase().replace(/\s+/g, '');
+      table_body = document.getElementById("table-body");
+      tr = table_body.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        const value_arr = [];
+        for (count = 1; count <= 3; count++) {
+          let items = tr[i].getElementsByTagName("td")[count].textContent.toLowerCase();
+          value_arr.push(items.replace(/\s+/g, ''))
+        }
+        const merged_str = value_arr.join(',');
+        if (merged_str.indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+    function Close(button) {
+      button.parentNode.classList.toggle('show');
+    }
+    function Open(button) {
+      console.log('wed')
+      const parent = button.parentNode;
+      const child = parent.children[1];
+      child.classList.toggle('show')
+    }
+
+  </script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script> -->
+</body>
+
+</html>

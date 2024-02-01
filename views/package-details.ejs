@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headlinks') %>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+            .form-control:focus {
+                box-shadow: none !important;
+                border: 1px solid #f87c00;
+            }
+
+            .form-select:focus {
+                box-shadow: none !important;
+                border: 1px solid #f87c00;
+            }
+
+            .img img {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .form-hidden {
+                transform: translate(-50%, -50%);
+
+
+            }
+
+            .popup-content {
+                width: 90%;
+            }
+
+            .popup {
+                display: none;
+                background: rgba(0, 0, 0, .5);
+                z-index: 1050;
+            }
+
+            .show {
+                display: block;
+            }
+
+            .notes li {
+                display: block;
+            }
+            .swal2-popup .swal2-button:focus {
+      box-shadow: none; /* Set to none to remove the focus shadow */
+    }
+    #itenary >*{
+        font-family: 'Roboto', sans-serif; 
+       }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <div class="container-fluid container-lg my-5">
+            <%packagesDetails.forEach((item)=>{%>
+                <header>
+                    <div class="img"><img src="<%=item.ImageUrl%>" alt=""></div>
+                    <h2 class="text-center my-4">
+                        <%=item.Name%>
+                    </h2>
+                    <h4>Destinations:-</h4>
+                    <ul class="p-0 m-0">
+                        <%item.Destinations.forEach((item,index)=>{%>
+                            <li class="font-secondary"><i class="ri-map-pin-fill me-1 text-primary"></i>
+                                <%=item%>
+                            </li>
+                            <%})%>
+                    </ul>
+
+                </header>
+                <main class="my-5" id="itenary">
+                    <h2 class="font-secondary mb-4">Itenary:-</h2>
+                    <%item.tourInfo.forEach((item)=>{%>
+
+                        <p><Strong class="font-secondary">
+                                <%=item.heading%>
+                            </Strong></p>
+                        <p>
+                            <%=item.description%>
+                        </p>
+                        <%})%>
+                            <hr class="text-dark my-4">
+                            <%item.importantInfo.forEach((item)=>{%>
+                                <strong class="text-danger font-secondary">
+                                    <%=item.heading%>
+                                </strong>
+                                <ul class="p-0 m-0 notes">
+                                    <%item.notes.forEach((point)=>{%>
+                                        <li class="font-secondary">
+                                            <i class="ri-corner-down-right-fill me-2 fs-3 text-danger"></i><%=point%>
+                                        </li>
+                                        <%})%>
+                                </ul>
+                                <hr class="text-dark my-4">
+                                <%})%>
+                </main>
+                <footer class="">
+                    <strong>Tour Ends</strong>
+                    <p><i>Regards</i></p>
+                    <p><strong>
+                            <%=item.advisor%>
+                        </strong></p>
+                    <button class="btn btn-primary rounded-pill mt-3 show-popup" data-tour="<%=item.Name%>"
+                        id="book-now">Book Now</button>
+                </footer>
+                <%})%>
+
+
+                    <div class="position-fixed top-0 start-0 w-100 h-100 popup">
+                        <div class="hero-form form-hidden position-absolute top-50 start-50 popup-content">
+                            <form action="" class="bg-white px-4 py-3 rounded shadow-lg book-form" id="booking-form">
+                                <span class="text-primary close-popup position-absolute top-0 end-0 pointer"><i
+                                        class="ri-close-circle-fill fs-1"></i></span>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">Name</label>
+                                    <input type="text" class="form-control" id="floatingInput"
+                                        placeholder="Enter Your Name" maxlength="35" name="name" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">Email</label>
+                                    <input type="text" class="form-control" type="email" name="email" id="floatingInput"
+                                        placeholder="optional" maxlength="25">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">Phone</label>
+                                    <input type="text" class="form-control" type="tel" name="phone" id="floatingInput"
+                                        placeholder="Enter you Number" maxlength="10" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">Person Count</label>
+                                    <input type="text" class="form-control" type="number" name="personCount" id="floatingInput"
+                                        minlength="1" maxlength="4" placeholder="Total Number of Persons" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">No of Adults</label>
+                                    <input type="text" class="form-control" id="floatingInput" name="adults"
+                                        placeholder="Type 0 if not any" minlength="1" maxlength="4" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">No of Childrens</label>
+                                    <input type="text" class="form-control" id="floatingInput" name="childrens"
+                                        placeholder="Type 0 if not any" minlength="1" maxlength="4" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="floatingInput ">Date</label>
+                                    <input type="date" class="form-control" id="floatingInput" name="date" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="package">Selected Package</label>
+                                    <input type="text" class="form-control" id="package" name="selectedPackage"
+                                        readonly value="<%=packagesDetails[0]._id%>">
+                                </div>
+                                <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+        </div>
+        <%- include('partials/footer') %>
+            <%- include('partials/footlinks') %>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                    function popup(classlist, event, target) {
+                        event.addEventListener('click', () => {
+                            target.classList.toggle(`${classlist}`)
+                        })
+                    }
+                    const popup_content = document.querySelector('.popup');
+                    popup('show', document.querySelector('.show-popup'), popup_content)
+                    popup('show', document.querySelector('.close-popup'), popup_content)
+
+
+                    function setInputValue(input, value) {
+                        input.value = value;
+                    }
+                    //...........................................................//
+                    const booking_form = document.getElementById('booking-form');
+                    const selected_input=document.getElementById('package');
+                    const book_now_btn=document.getElementById('book-now')
+                    book_now_btn.addEventListener('click',()=>{
+                        // setInputValue(selected_input,selected_value )
+
+                    })
+
+//................................................................................................//
+                    const selected_value=document.getElementById('book-now').getAttribute("data-tour");
+                    booking_form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(booking_form);
+                         const package=formData.get('selectedPackage');
+                         console.log(package)
+
+                        fetch('/packages/book', {
+                            method: 'POST',
+                            body: formData,
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: "Success",
+                                        text: "Form Submited Successfully",
+                                        icon: "success",
+                                        confirmButtonColor: '#f87c00'
+
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "Error",
+                                        text: data.message,
+                                        icon: "error",
+                                        confirmButtonColor: '#f87c00', 
+
+                                    });                                
+                                }
+
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                Swal.fire({
+                                        title: "Error",
+                                        text: "Internel Server Error",
+                                        icon: "error",
+                                        confirmButtonColor: '#f87c00'
+
+                                    }); 
+                            });
+                    });
+
+
+
+                </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%- include('partials/headlinks') %>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+      }
+    </style>
+</head>
+
+<body >
+  <div class="container-lg container-fluid">
+    <h1 class="text-center my-5">Available Packages</h1>
+    <div class="row">
+        <%if(packages.length<=0){%>
+          <div class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">No Packages Avalaible</div>
+        <%}else{%>
+        <%packages.forEach((item)=>{%>
+            <div class="col-md-4 border rounded p-3 shadow-sm mb-2">
+                <div class="card-body">
+                    <div class="icons mb-3">
+                        <button id="update" type="btn" class="btn" data-id="<%=item._id%>"><i class="ri-pencil-line fs-2 me-2"></i>Update</button>
+                        <button id="delete" onclick="Delete(this)" type="button" data-id="<%=item._id%>" class="btn"><i class="ri-delete-bin-2-line fs-2 me-2"></i>Delete</button>
+                    </div>
+                    <h2 class="card-title text-center font-secondary mb-4">
+                     <%=item.Name%>
+                    </h2>
+                    <h4><i class="ri-calendar-schedule-fill text-primary me-2"></i><%=item.Name%>
+
+                    </h4>
+                    <h5>Destinations:-</h5>
+                    <div class="destinations">
+                        <ul class="p-0 m-0">
+                            <%item.Destinations.forEach((item,index)=>{%>
+                                <li class="font-secondary"><i class="ri-map-pin-fill me-1 text-primary"></i>
+                                    <%=item%>
+                                </li>
+                                <%})%>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="mx-3">
+                <div class="card-footer text-end border-0 bg-white">
+                    <a href="#" class="btn-primary btn rounded-pill">Veiw Details</a>
+                </div>
+            </div>
+        <%})%>
+        <%}%>
+    </div>
+  </div>
+  <script>
+    function Delete(item){
+        console.log(item)
+     const id=item.getAttribute('data-id');
+     fetch(`/admin/delete-package/${id}`, {
+  method: "DELETE",
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+  .then(response => {
+    if (!response.error) {
+       const parent=item.parentNode;
+       const grand_parent=parent.parentNode;
+       const grand_parent_2=grand_parent.parentNode;
+       grand_parent_2.remove();
+    }else{
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+  })
+  .catch((error)=>{
+   console.log(error)
+  })
+    }
+ </script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script> -->
+</body>
+
+</html>

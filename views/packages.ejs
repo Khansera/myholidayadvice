@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headlinks') %>
+    <style>
+        
+.section-heading{
+    font-family: 'Salsa', cursive;
+    color: #f87c00;
+}
+.destinations ul li{
+    margin-right: 5px;
+}
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container-lg container-fluid my-5">
+        <div class="row">
+            <%packages.forEach((item)=>{%>
+            <div class="card col-md-4 col-12 p-0">
+                <div class="card-img position-relative">
+                    <span class="position-absolute  px-2 py-1 top-0 end-0 bg-primary text-white">50<i
+                            class="ri-percent-fill"></i>off</span>
+                    <img src="/src/images/pexels-muneeb-najar-19533158.jpg" class="card-img-top"
+                        alt="kashmir">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title text-center font-secondary mb-4"><%=item.Name%>
+                    </h2>
+                    <h4><i class="ri-calendar-schedule-fill text-primary me-2"></i><%=item.Duration%></h4>
+                    <h5>Destinations:-</h5>
+                    <div class="destinations">
+                        <ul class="p-0 m-0">
+                            <%item.Destinations.forEach((item,index)=>{%>
+                            <li><i class="ri-map-pin-fill me-1 text-primary"></i><%=item%></li>
+                            <%})%>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="mx-3">
+                <div class="card-footer text-end border-0 bg-white">
+                    <a href="/packages/details/<%item._id%>" class="btn-primary btn rounded-pill">Veiw Details</a>
+                </div>
+            </div>
+        <%})%>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+    <%- include('partials/footlinks') %>
+</body>
+</html>

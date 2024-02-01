@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headlinks') %>
+        <style>
+            *{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <!-- Users -->
+        <section>
+            <div class="container-lg container-fluid">
+                <h1 class="text-center mt-3">Admin Dashboard</h1>
+                <div class="titles my-5">
+                    <div class="row">
+                        <div class="col-xxl-4 col-md-4 my-md-0 my-3 pointer">
+                            <a href="/admin/registrations">
+                                <div class="card info-card sales-card bg-secondary">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-white">Registered</h5>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="ri-user-add-fill fs-1 text-white"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h2 class="text-white"><%=regis_count%></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xxl-4 col-md-4 my-md-0 my-3">
+                            <a href="/admin/packages">
+                                <div class="card info-card sales-card bg-secondary pointer">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-white">Avalaible Packages</h5>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="ri-focus-3-fill me-2 text-white fs-1"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h2 class="text-white"><%=pkg_count%></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xxl-4 col-md-4 my-md-0 my-3">
+                            <div class="card info-card sales-card bg-secondary pointer">
+                                <div class="card-body">
+                                    <h5 class="card-title text-white">Avalaible Blogs</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="ri-blogger-fill fs-1 text-white"></i>
+                                            <div class="ps-3">
+                                                <h2 class="text-white">145</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container-lg container-fluid">
+                <h1 class="text-center my-5">Operations</h1>
+                
+               <div class="row">
+                <div class="col-md-4 bg-secondary rounded p-3 me-3">
+                    <a href="/admin/upload-packages">
+                        <h5 class="text-white">Upload Package</h5>
+                        <button type="button" class="btn border-0"><i class="ri-upload-cloud-fill fs-1 text-white"></i></button>
+                    </a>
+                </div>
+                <div class="col-md-4 bg-secondary rounded p-3">
+                    <a href="">
+                        <h5 class="text-white">Upload Blogs</h5>
+                        <button type="button" class="btn"><i class="ri-upload-cloud-fill fs-1 text-white"></i></button>
+                    </a>
+                </div>
+               </div>
+            </div>
+        </section>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>

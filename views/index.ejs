@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headlinks') %>
+        <link rel="stylesheet" href="./../src/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <main>
+            <section id="hero">
+                <div class="container-lg container-fluid hero py-3">
+                    <div class="row">
+                        <div class="col-md-6 col-12 mb-3 order-md-2">
+                            <div class="swiper sw-hero">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"> <img
+                                            src="https://source.unsplash.com/random/1920x1080/?sonmarg"
+                                            class="w-100 rounded" style="max-height: 400px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="swiper-slide"> <img
+                                            src="https://source.unsplash.com/random/1920x1080/?dallake"
+                                            class="w-100 rounded" style="max-height: 400px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="swiper-slide"> <img
+                                            src="https://source.unsplash.com/random/1920x1080/?gulmarg"
+                                            class="w-100 rounded" style="max-height: 400px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="swiper-slide"> <img
+                                            src="https://source.unsplash.com/random/1920x1080/?pahalgam"
+                                            class="w-100 rounded" style="max-height: 400px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="swiper-slide"> <img
+                                            src="https://source.unsplash.com/random/1920x1080/?srinagar "
+                                            class="w-100 rounded" style="max-height: 400px; object-fit: cover;" alt="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="hero-description col-12 col-md-6 text-white mb-4 md-md-0">
+                            <h1 class="display-2">
+                                Discover a beautiful place with travela
+                            </h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore veritatis eius fugiat nam
+                                voluptas beatae velit ad quia quasi asperiores.</p>
+                            <a href="#" class="btn btn-primary rounded-pill">Explore Tours</a>
+
+                        </div>
+
+                    </div>
+                    <div class="hero-nav text-center">
+                        <ul class="text-white links p-4 m-0">
+                            <li class="me-2"><a href="" class="btn btn-light"><i
+                                        class="ri-chat-check-fill me-2 text-primary"></i>Book Now</a></li>
+                            <li class="me-2"><a href="" class="btn btn-light"><i
+                                        class="ri-focus-3-fill me-2 text-primary"></i>Packages</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="hero-form col-12 col-md-6">
+                        <form action="" class="bg-white py-5 px-4 rounded shadow-lg">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Your Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Phone</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select pt-2" aria-label="Default select example">
+                                    <option selected>Select Tour</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Date</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-pill">Book Now</button>
+                        </form>
+                    </div> -->
+                </div>
+            </section>
+
+            <section id="popular-tours">
+                <div class="container-lg container-fluid popular-tours mt-5">
+                    <header>
+                        <h1 class="display-4 section-heading text-center mb-5">Popular Tours For You</h1>
+                    </header>
+                    <main>
+                        <div class="swiper sw-popular-tours">
+                            <div class="swiper-wrapper">
+                                <div class="card swiper-slide">
+                                    <div class="card-img position-relative">
+                                        <span
+                                            class="position-absolute  px-2 py-1 top-0 end-0 bg-primary text-white">50<i
+                                                class="ri-percent-fill"></i>off</span>
+                                        <img src="/src/images/pexels-muneeb-najar-19533158.jpg" class="card-img-top"
+                                            alt="kashmir">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center font-secondary mb-4">Golden Triangle with
+                                            Kashmir
+                                        </h2>
+                                        <h4><i class="ri-calendar-schedule-fill text-primary"></i> 6 Nights / 7 days
+                                        </h4>
+                                        <h5>Destinations:-</h5>
+                                        <div class="destinations">
+                                            <ul class="p-0 m-0">
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Delhi</li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Agra</li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Srinagar</li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Dal
+                                                    Lake</li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Mughal
+                                                    Gardens</li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Gulmarg
+                                                </li>
+                                                <li><i class="ri-map-pin-fill me-1 text-primary"></i>Sonamarg
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr class="mx-3">
+                                    <div class="card-footer text-end border-0 bg-white">
+                                        <a href="#" class="btn-primary btn rounded-pill">Veiw Details</a>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </main>
+                    <footer>
+                        <div class="text-center"><button
+                                class="btn btn-primary rounded-pill my-5 text-center btn-lg">Explore
+                                All Tours</button></div>
+                    </footer>
+                </div>
+            </section>
+            <section id="catagories">
+                <div class="container-lg container-fluid">
+                    <header>
+                        <h1 class="display-4 section-heading text-center my-5">Packages</h1>
+                    </header>
+                    <main>
+                        <div class="row">
+                            <div class="col-md-4 col-12 mb-4">
+                                <a href="/international">
+                                    <div class="black-effect pointer zoom-effect">
+                                        <img src="/src/images/pexels-andrea-piacquadio-3769138.jpg" alt=""
+                                            class=" img-catagory">
+                                        <h1 class="text-white display-6 font-secondary text-nowrap">International</h1>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <a href="/domestic">
+                                    <div class="black-effect pointer zoom-effect">
+                                        <img src="/src/images/domestic.webp" alt="" class=" img-catagory">
+                                        <h1 class="text-white display-6 font-secondary text-nowrap">Domestic</h1>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <a href="/adventure">
+                                    <div class="black-effect pointer zoom-effect">
+                                        <img src="/src/images/adventure.avif" alt="" class=" img-catagory">
+                                        <h1 class="text-white display-6 font-secondary text-nowrap">Adventure</h1>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+        </main>
+        </div>
+        </section>
+        <section id="about-us">
+            <div class="container-lg container-fluid">
+                <header>
+                    <h1 class="display-4 section-heading text-center my-5">About Us</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum, blanditiis.</p>
+                </header>
+                <main>
+                    <div class="d-flex mb-3">
+                        <div
+                            class="box rounded px-3 py-2 bg-primary handshake me-3 d-flex justify-content-center align-items-center">
+                            <i class="ri-shake-hands-fill text-white"></i>
+                        </div>
+                        <div class="">
+                            <h2>Get Best Deals</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, pariatur voluptatem
+                                quis molestiae atque quos. Dignissimos non repudiandae neque aut.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div
+                            class="box rounded px-3 py-2 bg-dark handshake me-3 d-flex justify-content-center align-items-center">
+                            <i class="ri-message-3-line text-white"></i>
+                        </div>
+                        <div class="">
+                            <h2>Instant Conformation</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, pariatur voluptatem
+                                quis molestiae atque quos. Dignissimos non repudiandae neque aut.</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+        <section id="reveiws" class="bg-secondary">
+            <div class="container-lg container-fluid  my-5">
+                <header>
+                    <h1 class="display-4 section-heading text-white text-center py-5">What our Customers Say</h1>
+                </header>
+                <main>
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide  px-3 pb-5">
+                                <div class="reveiwer-img d-flex justify-content-center align-items-center my-3">
+                                    <img src="/src/images/pexels-muneeb-najar-19533158.jpg" alt="" height="150px"
+                                        width="150px" class="my-3 rounded-circle">
+                                </div>
+                                <div class="reveiwer-comment text-white my-4">
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum illo incidunt
+                                        sapiente corporis nesciunt laudantium quis voluptates ab eaque consequatur.
+                                        Sequi doloribus quisquam libero commodi repellat, a quo ut culpa?</p>
+                                </div>
+                                <div class="reveiwer-name text-center">
+                                    <p class="text-primary mb-1">Lucy</p>
+                                    <small class="text-secondary">Traveller</small>
+                                </div>
+                                <div class="nav-buttons text-center mt-3">
+                                    <button class="btn rounded-circle bg-primary me-2"><i
+                                            class="ri-arrow-left-s-line text-white"></i></button>
+                                    <button class="btn rounded-circle bg-primary"><i
+                                            class="ri-arrow-right-s-line text-white"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container-lg container-fluid">
+                <header>
+                    <h1 class="display-4 section-heading text-primary text-center py-5">Find Us</h1>
+                </header>
+                <main>
+                    <div class="map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.547242825997!2d74.82205859999999!3d34.081118800000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f75126a2b95%3A0x8a3bb24bc885807f!2sEscorted%20Holidays!5e0!3m2!1sen!2sin!4v1705681311577!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="location-details my-5">
+                        <p><strong>Office Locations:-</strong></p>
+                        <p><i class="ri-map-pin-2-line me-2 text-primary"></i><strong>Bishember Nagar, Munawara Abad, Srinagar, J&K, 190001
+                                </strong></p>
+                    </div>
+                </main>
+                <footer>
+                    <div class="contact-details">
+
+                    </div>
+                </footer>
+            </div>
+        </section>
+        </main>
+        <%- include('partials/footer') %>
+            <%- include('partials/footlinks') %>
+
+                <script src="/src/script.js"></script>
+</body>
+
+</html>

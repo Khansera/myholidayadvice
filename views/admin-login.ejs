@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Document</title>
+<%- include('partials/headlinks') %>
+</head>
+<body>
+<section class="vh-100 gradient-custom">
+<div class="container py-4 h-100">
+<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+<div class="card bg-secondary text-white" style=border-radius:1rem>
+<div class="card-body p-5 text-center">
+<div class="mb-md-5 mt-md-4">
+<div class=my-3><img src=/images/Picture1.jpg style=height:100px alt=logo></div>
+<h2 class="fw-bold mb-2 text-uppercase">Escorted Holiday Admin Pannel</h2>
+<h4>Login with your credentials</h4>
+<p class="text-white-50 mb-5">Please enter your username and password!</p>
+<form id=admin-login>
+<div class="form-outline form-white mb-4">
+<label class=form-label for=password>Username</label>
+<input id=username name=username class="form-control form-control-lg">
+</div>
+<div class="form-outline form-white mb-4">
+<label class=form-label for=password>Password</label>
+<input type=password id=password name=password class="form-control form-control-lg">
+</div>
+<p class="small mb-5 pb-lg-2"><a class=text-white-50 href=#!>Forgot password?</a></p>
+<button class="btn btn-outline-light btn-lg px-5" type=submit>Login</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
+<%- include('partials/footlinks') %>
+<script src=/dist/admin/admin-login.js></script>
+</body>
+</html>

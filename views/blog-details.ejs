@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Document</title>
+<%- include('partials/headlinks') %>
+<style>.img-blog{height:300px;width:100%;object-fit:cover}</style>
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="container-lg container-fluid my-5">
+<div class="blog-single gray-bg">
+<div class=container>
+<div class="row align-items-start">
+<div class="col-lg-8 m-15px-tb">
+<article class=article>
+<div class=article-img>
+<img src="<%=blogs.blogImage%>" class=w-100 alt="">
+</div>
+<div class=article-title>
+<h6 class=mt-2><a href=# class=text-primary><%=blogs.category%></a></h6>
+<h2><%=blogs.blogHeading%></h2>
+<div class=media>
+<div class=avatar>
+<img src=https://bootdey.com/img/Content/avatar/avatar1.png class=rounded-pill alt="" style=height:50px>
+</div>
+<div class="media-body mt-3">
+<p class=m-0><label class=text-danger><%=blogs.author%></label></p>
+<span class=text-secondary><%=blogs.updatedAt.toLocaleDateString('en')%></span>
+</div>
+<hr>
+</div>
+</div>
+<div class="article-content mt-3">
+<p>
+<%-blogs.blogDescription%>
+</p>
+</div>
+</article>
+</div>
+<div class="col-lg-4 m-15px-tb blog-aside">
+<div class="widget widget-author p-3 rounded shadow">
+<div class=widget-title>
+<h3 class=text-danger>Author</h3>
+</div>
+<hr>
+<div class=widget-body>
+<div class="media align-items-center">
+<div class="avatar mt-3">
+<img src=https://bootdey.com/img/Content/avatar/avatar6.png class=rounded-pill alt="" style=height:100px>
+</div>
+<div class="media-body mt-3">
+<strong>Hello, I'm<br><%=blogs.author%></strong>
+</div>
+</div>
+<p class=mt-2><%=blogs.authorInfo%></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%- include('partials/footer') %>
+<%- include('partials/footlinks') %>
+</body>
+</html>

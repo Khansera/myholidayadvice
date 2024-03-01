@@ -1,0 +1,1 @@
+function scrollToTarget(o,t={}){let c={behavior:"smooth",block:"start",...t},e=document.querySelector(o);e?e.scrollIntoView(c):"#contact"===o&&(window.location.href="/home#contact")}

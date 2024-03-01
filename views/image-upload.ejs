@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Image Upload</title>
+<%- include('partials/headlinks') %>
+<style>.highlighted-text{background-color:#ff0}#popupMenu{display:none;position:absolute;background-color:#f9f9f9;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:5px;border-radius:5px;z-index:9999}label{color:#ffff}</style>
+</head>
+<body class=bg-secondary>
+<div class="container-fluid container-lg">
+<header>
+<h2 class="text-center my-5 text-white">Upload Images to Gallery</h2>
+</header>
+<main>
+<div>
+<div class="d-flex justify-content-center mb-4">
+<img id=selectedAvatar src=https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg class=rounded-circle style=width:100px;height:100px;object-fit:cover alt="example placeholder">
+</div>
+<div class="d-flex justify-content-center mb-4">
+<div class="btn btn-primary btn-rounded">
+<label class="form-label text-white m-1" for=picture>Choose Image</label>
+<input type=file class="form-control d-none" id=picture accept=*/image name=picture onchange='displaySelectedImage(event,"selectedAvatar")'>
+</div>
+</div>
+</div>
+<div class=gallery>
+<form id=image-upload>
+<div class=mb-3>
+<label for=Heading>Heading</label>
+<input name=Heading class=form-control id=Heading>
+</div>
+<button type=submit class="btn btn-primary">Upload</button>
+</form>
+</div>
+</main>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=/dist/admin/image-upload.js></script>
+</body>
+</html>

@@ -5,12 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <%- include('partials/headlinks') %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.1/remixicon.min.css"
-        integrity="sha512-dTsohxprpcruDm4sjU92K0/Gf1nTKVVskNHLOGMqxmokBSkfOAyCzYSB6+5Z9UlDafFRpy5xLhvpkOImeFbX6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         .itenary-container,
         .important-points-container {
@@ -26,13 +23,16 @@
             transform: scale(0);
 
         }
+        label{
+            color: #ffff;
+        }
     </style>
 </head>
 
-<body>
+<body class="bg-secondary">
     <div class="container-fluid container-lg">
         <header>
-            <h2 class="text-center my-5">Upload Package</h2>
+            <h2 class="text-center my-3 text-white">Upload Package</h2>
         </header>
         <!--Avatar-->
         <main>
@@ -67,9 +67,58 @@
                             placeholder="6 Days / 7 Nights">
                     </div>
                     <div class="mb-3">
+                        <label for="season">Season</label>
+                        <input type="text" name="season" class="form-control" id="season"
+                            placeholder="optional">
+                    </div>
+                    <div class="mb-3">
+                        <label for="difficulty">Difficulty</label>
+                        <input type="text" name="difficulty" class="form-control" id="difficulty"
+                            placeholder="optional">
+                    </div>
+                    <div class="mb-3">
                         <label for="pkgType">Package Type</label>
-                        <input type="text" name="pkgType" class="form-control" id="pkgType"
-                            placeholder="Domestic/International/Adventure">
+                        <select name="pkgType" id="pkgType" class="form-select" >
+                            <option value="domestic">Domestic</option>
+                            <option value="international">International</option>
+                            <option value="adventure">Adventure</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pkgCategory">Package Category</label>
+                        <select name="pkgCategory" class="form-select" id="pkgCategory" >
+                            <option value="AdventureTours ">Adventure Tours</option>
+                            <option value="LeisureTours">Leisure Tours</option>
+                            <option value="AllPilgrimage">All Pilgrimage</option>
+                            <option value="Tours">Tours</option>
+                            <option value="Trekking">Trekking</option>
+                            <option value="Skiing">Skiing</option>
+                            <option value="BirdWatching"> Bird Watching</option>
+                            <option value="Fishing">Fishing </option>
+                            <option value="Rafting">Rafting</option>
+                            <option value="EducationalTours">Educational Tours</option>
+                            <option value="BudgetTours">Budget Tours</option>
+                            <option value="LuxuryTours">Luxury Tours </option>
+                            <option value="CulturalTours">Cultural Tours</option>
+                            <option value="GroupTours"> Group Tours</option>
+                            <option value="FamilyTours">Family Tours</option>
+                            <option value="JeepSafari"> Jeep Safari </option>
+                            <option value="Camping">Camping </option>
+                            <option value="CyclingTour"> Cycling Tour</option>
+                            <option value="BikeTour">Bike Tour</option>
+                            <option value="CarRentals"> Car Rentals</option>
+                            <option value="BusorCoachBookings"> Bus or Coach Bookings</option>
+                            <option value="Houseboat">Houseboat</option>
+                            <option value="Hotels">Hotels </option>
+                            <option value="Resorts">Resorts </option>
+                            <option value="Huts">Huts </option>
+                            <option value="MonumentalTours"> Monumental Tours</option>
+                            <option value="NationalParkTour">National Park Tour</option>
+                            <option value="Boating">Boating</option>
+                            <option value="Medical Tourism">Medical Tourism</option>
+
+
+                        </select>
                     </div>
                     <div class="mb-3" id="itenary">
                         <label for="iternaryPoints">Itenary Points</label>
@@ -77,19 +126,25 @@
                             placeholder="type number of Points">
                         <button type="button" class="btn btn-sm btn-primary my-3" id="generate-inputs">Generate</button>
                     </div>
+                    <div class="mb-3">
+                        <label for="aboutPlace">Place Info</label>
+                        <textarea type="text" name="aboutPlace" class="form-control" id="aboutPlace"
+                            placeholder="Enter About Place">                        </textarea>
+
+                    </div>
                     <div class="mb-3" id="important-points">
                         <label for="importantPoints">Important Points</label>
-                        <input type="number" class="form-control" id="importantPoints"
+                        <input type="number" disabled class="form-control" id="importantPoints"
                             placeholder="type number of Points">
-                        <button type="button" class="btn btn-sm btn-primary my-3"
-                            id="generate-inputs-2">Generate</button>
+                        <button type="button" class="btn btn- btn-primary my-3"
+                            id="generate-inputs-2" disabled>Generate</button>
                     </div>
                     <div class="mb-3">
                         <label for="advisor">Advisor Name</label>
                         <input type="text" name="advisor" class="form-control" id="advisor"
                             placeholder="Domestic/International/Adventure">
                     </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="submit" class="btn btn-primary mb-3">Upload Package</button>
                 </form>
             </div>
 
@@ -118,214 +173,12 @@
     <script src="
     https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.js
     "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"
+        integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-
-
-    <script>
-
-        var input = document.querySelector('input[name=Destinations]');
-
-        new Tagify(input)
-
-
-        function displaySelectedImage(event, elementId) {
-            const selectedImage = document.getElementById(elementId);
-            const fileInput = event.target;
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    selectedImage.src = e.target.result;
-                };
-
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-
-        function insertInput(button) {
-        const newInput = document.createElement('input');
-        newInput.type = 'text';
-        newInput.placeholder = 'Point';
-        newInput.classList.add('form-control','mt-3')
-
-        const container = button.closest('.important-points-container');
-
-        if (container) {
-            const lastChild = container.lastElementChild;
-
-            container.insertBefore(newInput, lastChild);
-        } else {
-            console.error('Container not found.');
-        }
-    }
-
-        function removePoints(target) {
-            let grandParent;
-            const item_to_remove = document.querySelectorAll(target);
-            item_to_remove.forEach((element) => {
-                element.addEventListener('click', () => {
-                    grandParent = element.parentNode.parentNode;
-                    grandParent.classList.add('fade-out');
-
-                    setTimeout(() => {
-                        grandParent.remove();
-                    }, 500);
-                })
-            })
-        }
-
-
-        function createPoints(length, elementName, target, containerClass, maxElements, inputName) {
-
-            const existingElements = document.querySelectorAll(`.${containerClass}`);
-            if (existingElements.length >= maxElements) {
-                alert('Maximum limit reached. Cannot add more elements.');
-                return;
-            }
-
-            const elementsToAdd = Math.min(length, maxElements - existingElements.length);
-
-            for (let i = 0; i < elementsToAdd; i++) {
-                const element = document.createElement(elementName);
-                element.classList.add('mb-3', containerClass);
-                if(containerClass==='itenary-container'){
-                    element.innerHTML = `
-            <p class="text-end my-2">
-                <i class="ri-delete-bin-5-fill fs-3 btn-del" ></i>
-            </p>
-            <input type="text" class="form-control mb-3 bg-light" id="input-${inputName}-${i}" placeholder="Heading">
-            <textarea  class="form-control" id="text-${inputName}-${i}" placeholder="Description"></textarea>
-        `;
-                }else{
-                element.innerHTML = `
-            <p class="text-end my-2">
-                <i class="ri-delete-bin-5-fill fs-3 btn-del" ></i>
-            </p>
-            <input type="text" class="form-control mb-3 bg-light" id="input-${inputName}-${i}" placeholder="Heading">
-            <input  class="form-control" id="text-${inputName}-${i}" placeholder="Point"></input>
-            <div class="text-center"><button type="button" onclick=insertInput(this) class="text-center mt-3 btn btn-primary" ><i class="ri-add-box-fill fs-3"></i></button></div>
-        `;        
-        }
-                target.append(element);
-            }
-            window.scrollBy(0, 50);
-        }
-
-
-
- 
-        //...........................................................................//
-
-
-
-        //.....................//
-        const generate_btn = document.getElementById('generate-inputs');
-        const generate_input = document.getElementById('iternaryPoints');
-        const itenary = document.getElementById('itenary');
-
-        generate_btn.addEventListener('click', () => {
-            createPoints(Number(generate_input.value), 'div', itenary, 'itenary-container', 20, 'itenary')
-            removePoints('.btn-del')
-        });
-        //.....................................................................//
-        const important_points = document.getElementById('important-points');
-        const generate_btn_2 = document.getElementById('generate-inputs-2');
-        const input_important_points = document.getElementById('importantPoints')
-        generate_btn_2.addEventListener('click', () => {
-            createPoints(Number(input_important_points.value), 'div', important_points, 'important-points-container', 4, 'important')
-            removePoints('.btn-del');   
-        });
-        //.............................................................................//
-        function creatArray(container) {
-            const elements = document.querySelectorAll(container);
-
-
-            const dataArray = Array.from(elements).map(element => {
-                const heading = element.querySelector('input').value;
-                if(container!=='.important-points-container'){
-                const description = element.querySelector('textarea').value;
-                return {
-                    heading,
-                    description
-                };
-                }else{
-                    const notes=[];
-                    const inputs=element.querySelectorAll('input');
-                   for(let i=1; i<inputs.length; i++){
-                    notes.push(inputs[i].value);
-                   }
-                   return {
-                    heading,
-                    notes
-                    
-                };
-                }
-          
-            });
-
-            return dataArray;
-        }
-
-
-
-
-
-        const package_upload_form = document.getElementById('package-upload');
-
-        package_upload_form.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const picture=document.getElementById('picture');
-            const itenary_data=JSON.stringify(creatArray('.itenary-container'));
-            const important_info_data=JSON.stringify(creatArray('.important-points-container'));
-            const form_data = new FormData(package_upload_form)
-            form_data.append('picture',picture.files[0])
-            form_data.append('tourInfo', itenary_data)
-            form_data.append('importantInfo', important_info_data)
-            
-            for (const entry of form_data.entries()) {
-            console.log(`${entry[0]}: ${entry[1]}`);
-        }
-
-            fetch('/admin/upload-package', {
-                method: 'POST',
-                body: form_data,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: "Success",
-                            text: "Package Uploaded Successfully",
-                            icon: "success",
-                            confirmButtonColor: '#f87c00'
-
-                        });
-                        
-                    } else {
-                        Swal.fire({
-                            title: "Error",
-                            text: data.message,
-                            icon: "error",
-                            confirmButtonColor: '#f87c00',
-
-                        });
-                    }
-
-                })
-                .catch(error => {
-                    console.error(error);
-                    Swal.fire({
-                        title: "Error",
-                        text: "Internel Server Error",
-                        icon: "error",
-                        confirmButtonColor: '#f87c00'
-
-                    });
-                });
-
-        })
+        <script src="/dist/admin/package-upload.js"></script>
 
 
 
@@ -338,9 +191,6 @@
 
 
 
-
-
-    </script>
 </body>
 
 </html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Admin: Reveiws</title>
+<%- include('partials/headlinks') %>
+<style>.blog{transform:scale(1);transition:all .5s ease-out}.blog.fade-out{transform:scale(0)}</style>
+</head>
+<body>
+<div class="container-lg container-fluid">
+<h1 class="text-center my-5">Available Reveiws</h1>
+<div class="row px-2">
+<%if(reveiws.length<=0){%>
+<div class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">No Reveiws Avalaible</div>
+<%}else{%>
+<%reveiws.forEach((item)=>{%>
+<div class="col-md-4 col-12 border rounded p-3 shadow-sm mb-2 blog">
+<div class=card-body>
+<div class="icons mb-3">
+<button id=update type=btn class=btn data-id="<%=item._id%>"><i class="ri-pencil-line fs-2 me-2"></i>Update</button>
+<button id=delete onclick='Delete(this,"reveiw")' type=button data-id="<%=item._id%>" class=btn><i class="ri-delete-bin-2-line fs-2 me-2"></i>Delete</button>
+</div>
+<h2 class="card-title text-center mb-4">
+Custom Reveiw: <%if(item.authorAdmin=='NA'){%>
+No, Uploaded by User through Link
+<%}else{%>
+Yes, Upload by Admin
+<%}%>
+</h2>
+<h2 class="card-title text-center mb-4">
+Source:
+<%if(item.source.Name==='Admin'){%>
+<%=item.authorAdmin%>
+<%}else{%>
+<%=item.source.Name%>
+<%}%>
+</h2>
+<p>
+<%=item.description%>
+</p>
+</div>
+<hr class=mx-3>
+</div>
+<%})%>
+<%}%>
+</div>
+</div>
+<script src=/dist/admin/delete.js></script>
+</body>
+</html>

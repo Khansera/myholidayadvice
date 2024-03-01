@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Reveiw: Escorted Holidays</title>
+<link rel="shortcut icon" href=/images/Picture1.jpg type=image/x-icon>
+<%- include('partials/headlinks') %>
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="container-lg container-fluid my-5">
+<h1 class="text-center my-4"><i class="ri-feedback-fill me-2 fs-3"></i> <strong>Give us your feedback</strong></h1>
+<div class=text-center>
+<h4 class=my-3>Hi,<strong class=mx-1><%=user.name.charAt(0).toUpperCase() + user.name.slice(1)%></strong>Your opinion matters</h4>
+<hr>
+<h5>Your Rating</h5>
+</div>
+<form id=reveiw>
+<div class="form-check mb-4">
+<input name=feedback class=form-check-input value="Very good" type=radio>
+<label class=ml-3>Very good</label>
+</div>
+<div class="form-check mb-4">
+<input name=feedback type=radio value=Good class=form-check-input>
+<label class=ml-3>Good</label>
+</div>
+<div class="form-check mb-4">
+<input name=feedback type=radio value=Mediocre class=form-check-input>
+<label class=ml-3>Mediocre</label>
+</div>
+<div class="form-check mb-4">
+<input name=feedback type=radio value=Bad class=form-check-input>
+<label class=ml-3>Bad</label>
+</div>
+<div class="form-check mb-4">
+<input name=feedback type=radio value="Very Bad" class=form-check-input>
+<label class=ml-3>Very Bad</label>
+</div>
+<div class=text-center>
+<h4 class=my-3>Hi,<strong class=mx-1><%=user.name.charAt(0).toUpperCase() + user.name.slice(1)%></strong>What could we improve?</h4>
+</div>
+<input type=hidden id=user-id value="<%=user.id%>">
+<textarea required type=textarea name=description placeholder="Your Message" class=form-control></textarea>
+<div class="footer my-4">
+<button type=submit class="btn btn-primary rounded-pill btn-lg">Submit Feedback
+<i class="fa fa-paper-plane"></i>
+</button>
+</div></form>
+</div>
+<%- include('partials/footer') %>
+<script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<%- include('partials/footlinks') %>
+<script src=/src/reveiw.js></script>
+</body>
+</html>

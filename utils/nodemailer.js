@@ -4,15 +4,16 @@ async function sendEmail( to,body){
     console.log(to)
     try{
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
+        host: `${process.env.HOST}`,
         port: 465,
         auth: {
-            user: 'kali33613@gmail.com',
-            pass: process.env.NMP
+            user: 'info@myholidayadvice.com',
+            pass: `${process.env.CDP}`
         }
     });
 
     const mailOptions = {
+        from:'info@myholidayadvice.com',
         to: to,
         subject: body.subject,
         html:body.content,

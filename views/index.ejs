@@ -3,11 +3,12 @@
 <head>
 <meta charset=UTF-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<%- include('partials/meta') %>
 <title>Home: Escorted Holidays</title>
 <%- include('partials/headlinks') %>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css>
 <link rel=stylesheet href=/dist/index.css>
-<link rel="shortcut icon" href=/images/Picture1.jpg type=image/x-icon>
+<link rel="shortcut icon" href="/images/Picture1.jpg" type=image/x-icon>
 </head>
 <body>
 <%- include('partials/navbar') %>
@@ -18,15 +19,15 @@
 <div class="col-md-6 col-12 mb-3 order-md-2">
 <div class="swiper sw-hero">
 <div class=swiper-wrapper>
-<div class=swiper-slide> <img src=https://source.unsplash.com/random/1920x1080/?sonmarg class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
+<div class=swiper-slide> <img loading="lazy" src=https://source.unsplash.com/random/1920x1080/?sonmarg class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
 </div>
-<div class=swiper-slide> <img src=https://source.unsplash.com/random/1920x1080/?dallake class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
+<div class=swiper-slide> <img loading="lazy" src=https://source.unsplash.com/random/1920x1080/?dallake class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
 </div>
-<div class=swiper-slide> <img src=https://source.unsplash.com/random/1920x1080/?gulmarg class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
+<div class=swiper-slide> <img loading="lazy" src=https://source.unsplash.com/random/1920x1080/?gulmarg class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
 </div>
-<div class=swiper-slide> <img src=https://source.unsplash.com/random/1920x1080/?pahalgam class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
+<div class=swiper-slide> <img loading="lazy" src=https://source.unsplash.com/random/1920x1080/?pahalgam class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
 </div>
-<div class=swiper-slide> <img src=https://source.unsplash.com/random/1920x1080/?srinagar class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
+<div class=swiper-slide> <img loading="lazy" src=https://source.unsplash.com/random/1920x1080/?srinagar class="w-100 rounded" style=max-height:400px;object-fit:cover alt="">
 </div>
 </div>
 </div>
@@ -62,7 +63,7 @@ Discover a beautiful place with Escorted Holidays
 <%packages.forEach((item)=>{%>
 <div class="card swiper-slide">
 <div class="card-img position-relative">
-<img src="<%=item.ImageUrl%>" class="card-img-top img-fixed" alt=kashmir>
+<img src="<%=item.ImageUrl%>" loading="lazy" class="card-img-top img-fixed" alt=kashmir>
 </div>
 <div class=card-body>
 <h2 class="card-title text-center mb-4">
@@ -106,7 +107,7 @@ Discover a beautiful place with Escorted Holidays
 <div class="col-md-4 col-12 mb-4">
 <a href=/packages/international>
 <div class="black-effect pointer zoom-effect">
-<img src=/images/pexels-andrea-piacquadio-3769138.jpg alt="" class=img-catagory>
+<img loading="lazy" src=/images/pexels-andrea-piacquadio-3769138.jpg alt="" class=img-catagory>
 <h1 class="text-white display-6 text-nowrap">International</h1>
 </div>
 </a>
@@ -114,7 +115,7 @@ Discover a beautiful place with Escorted Holidays
 <div class="col-md-4 col-12 mb-4">
 <a href=/packages/domestic>
 <div class="black-effect pointer zoom-effect">
-<img src=/images/domestic.webp alt="" class=img-catagory>
+<img loading="lazy" src=/images/domestic.webp alt="" class=img-catagory>
 <h1 class="text-white display-6 text-nowrap">Domestic</h1>
 </div>
 </a>
@@ -122,17 +123,16 @@ Discover a beautiful place with Escorted Holidays
 <div class="col-md-4 col-12 mb-4">
 <a href=/packages/adventure>
 <div class="black-effect pointer zoom-effect">
-<img src=/images/adventure.avif alt="" class=img-catagory>
+<img loading="lazy" src=/images/adventure.avif alt="" class=img-catagory>
 <h1 class="text-white display-6 text-nowrap">Adventure</h1>
 </div>
 </a>
 </div>
 </div>
 </main></div>
-</section></main>
+</section>
 
 
-<section>
 <section id=reveiws class=bg-secondary>
 <div class="container-lg container-fluid my-5">
 <header>
@@ -144,7 +144,7 @@ Discover a beautiful place with Escorted Holidays
 <%reveiws.forEach((item)=>{%>
 <div class="swiper-slide px-3 pb-5">
 <div class="reveiwer-img d-flex justify-content-center align-items-center my-3">
-<img src=/images/user.png alt="" height=150px width=150px class="my-3 rounded-circle">
+<img loading="lazy" src=/images/user.png alt="" height=150px width=150px class="my-3 rounded-circle">
 </div>
 <div class="reveiwer-comment text-white my-4">
 <p class=text-center>
@@ -187,7 +187,7 @@ Discover a beautiful place with Escorted Holidays
 <div class="col-lg-4 col-md-6 mt-4 pt-2">
 <div class="blog-post rounded border">
 <div class="blog-img d-block overflow-hidden position-relative">
-<img src="<%=item.blogImage%>" class="img-fluid rounded-top" alt="">
+<img loading="lazy" src="<%=item.blogImage%>" class="img-fluid rounded-top" alt="">
 <div class="overlay rounded-top bg-dark"></div>
 </div>
 <div class="content p-3">
@@ -208,8 +208,8 @@ Discover a beautiful place with Escorted Holidays
 </p>
 <div class="pt-3 mt-3 border-top d-flex justify-content-between">
 <div class="author mt-2 d-flex align-items-center">
-<img src=https://bootdey.com/img/Content/avatar/avatar1.png class="img-fluid avatar avatar-ex-sm rounded-pill mr-3 shadow me-2" style=height:35px alt="">
-<h6 class=mb-0><a href=javascript:void(0) class="text-dark name">
+<img loading="lazy" src=https://bootdey.com/img/Content/avatar/avatar1.png class="img-fluid avatar avatar-ex-sm rounded-pill mr-3 shadow me-2" style=height:35px alt="">
+<h6  class=mb-0><a href=javascript:void(0) class="text-dark name">
 <%=item.author%>
 </a></h6>
 </div>
@@ -221,6 +221,7 @@ Discover a beautiful place with Escorted Holidays
 <%})%>
 </div>
 </div></section>
+
 <section id=contact>
 <div class="container-lg container-fluid">
 <header>
@@ -228,7 +229,7 @@ Discover a beautiful place with Escorted Holidays
 </header>
 <main>
 <div class=map>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.547242825997!2d74.82205859999999!3d34.081118800000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f75126a2b95%3A0x8a3bb24bc885807f!2sEscorted%20Holidays!5e0!3m2!1sen!2sin!4v1705681311577!5m2!1sen!2sin" width=600 height=450 style=border:0 allowfullscreen loading=lazy referrerpolicy=no-referrer-when-downgrade></iframe>
+<iframe loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.547242825997!2d74.82205859999999!3d34.081118800000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f75126a2b95%3A0x8a3bb24bc885807f!2sEscorted%20Holidays!5e0!3m2!1sen!2sin!4v1705681311577!5m2!1sen!2sin" width=600 height=450 style=border:0 allowfullscreen loading=lazy referrerpolicy=no-referrer-when-downgrade></iframe>
 </div>
 <div class="location-details my-5">
 <p><strong>Office Locations:-</strong></p>
@@ -270,10 +271,11 @@ Discover a beautiful place with Escorted Holidays
 </footer>
 </div>
 </section>
+</main>
 <%- include('partials/footer') %>
 
 <%- include('partials/footlinks') %>
-<script src=https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js></script>
-<script src=/dist/index.js></script>
-</section></body>
+<script async src=https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js></script>
+<script async src=/dist/index.js></script>
+</body>
 </html>

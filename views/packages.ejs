@@ -3,6 +3,7 @@
 <head>
 <meta charset=UTF-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<%- include('partials/meta') %>
 <title>Escorted Holiays:<%=type%>-Packages</title>
 <link rel="shortcut icon" href=/images/Picture1.jpg type=image/x-icon>
 <%- include('partials/headlinks') %>
@@ -12,6 +13,7 @@
 <%- include('partials/navbar') %>
 <h1 class="text-center text-primary my-5"><%=type.charAt(0).toUpperCase() + type.slice(1)%> Packages</h1>
 <div class="container-lg container-fluid my-5">
+    <div class="search my-4"><input type="search" id="search-packages" class="form-control" placeholder="Search Packages"></div>
 <div class="row p-0">
 <%packages.forEach((item)=>{%>
 <div class="col-md-4 mt-2">
@@ -42,6 +44,9 @@
 </div>
 </div>
 <%- include('partials/footer') %>
+<script>
+function searchPackages(e){document.querySelectorAll(".col-md-4").forEach((n=>{const t=n.querySelector(".card-title"),a=t.innerText.toLowerCase(),r=Array.from(n.querySelectorAll(".destinations li")).map((e=>e.innerText.toLowerCase())).join(" ");if(t.innerHTML=t.innerText,a.includes(e.toLowerCase())||r.includes(e.toLowerCase())){n.style.display="block";const a=new RegExp(e,"gi");t.innerHTML=t.innerHTML.replace(a,'<span class="bg-danger">$&</span>')}else n.style.display="none"}))}document.getElementById("search-packages").addEventListener("input",(function(){searchPackages(this.value.toLowerCase())}));
+  </script>
 <%- include('partials/footlinks') %>
 </body>
 </html>

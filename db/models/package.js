@@ -5,6 +5,7 @@ const pkg=new mongoose.Schema({
   Name:{ type: String, required: [true, 'Please enter a valid Name'] ,trim:true},
   Destinations:{ type: Array, required: [true, 'Please enter the valid Destination'] ,trim:true},
   Duration:{ type: String, required: [true, 'Please enter the valid Duration'] ,trim:true},
+  location:{ type: String, required: [true, 'Please enter the valid Duration'] ,trim:true,lowercase:true},
   pkgType:{ type: String, required: [true, 'Please enter the valid Package Type'] },
   tourInfo:{ type: Array, required: [true, 'Please enter the valid Tour Info'] ,trim:true},
   importantInfo:{ type: Array, trim:true},

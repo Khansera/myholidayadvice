@@ -96,6 +96,9 @@ function processString(input) {
     input = input.replace(/\/n/g, '<br>').replace(/\/hr/g, '<hr>');
     return input;
 }
+function trimString(str) {
+    return str.replace(/\s+/g, '');
+  }
 //..............................................................................................///
 router.get('/dashboard', async (req, res) => {
     if (req.isAuthenticated()) {
@@ -218,7 +221,7 @@ router.get('/upload-packages', async (req, res) => {
 router.post('/upload-package', upload.single('picture'), mongoSanitize(), xss(), async (req, res) => {
     if (req.isAuthenticated()) {
 
-        const { packageName, Destinations, duration, pkgType, pkgCategory, advisor, tourInfo, aboutPlace, importantInfo, season, difficulty } = req.body;
+        const { packageName, Destinations, duration,location, pkgType, pkgCategory, advisor, tourInfo, aboutPlace, importantInfo, season, difficulty } = req.body;
         console.log(req.file)
         try {
             if (req.file && req.body) {
@@ -227,6 +230,7 @@ router.post('/upload-package', upload.single('picture'), mongoSanitize(), xss(),
                     Name: packageName,
                     Destinations: JSON.parse(Destinations).map((object) => object.value),
                     Duration: duration,
+                    location:trimString(location),
                     pkgType: pkgType,
                     catagory: pkgCategory,
                     tourInfo: JSON.parse(tourInfo),
@@ -517,9 +521,14 @@ router.delete('/delete/:id', upload.none(), mongoSanitize(), xss(), async (req, 
                 </html>
             `,subject:'Feedback Escorted Holidays'
         };
-        await sendEmail(email,template)
-        res.json({error:false, message:"Email sent Successfully"})
-        
+        const message=await sendEmail(email,template)
+        if(message.includes("OK")){
+            res.json({error:false,message:'Email sent Successfully'})
+        }
+    else{
+        res.json({error:true,message:'Failed to send email'})
+
+    }
     } catch (error) {
         console.log(error)
         res.json({error:true, message:"Failed to send Email"})

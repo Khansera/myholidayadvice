@@ -18,7 +18,7 @@ const reveiw = require('../db/models/reveiw');
 const { v4: uuidv4 } = require('uuid');
 const {sendEmail}=require('../utils/nodemailer');
 const other=require('../db/models/other');
-
+const navlink=require('../db/models/navLinks')
 
 
 function generateId(){
@@ -118,7 +118,7 @@ router.get('/dashboard', async (req, res) => {
             res.render('admin-dashboard', { pkg_count: package_count, regis_count: registration_count, blog: blog_count, reveiws: reveiw_count,images:image_count,status:site_status, username: req.user.username })
 
         } catch (error) {
-
+        console.log(error)
         }
     } else {
         res.redirect("/admin/login")    }
@@ -140,12 +140,22 @@ router.get('/registrations', async (req, res) => {
         res.redirect("/admin/login")    }
 
 })
-router.get('/packages', async (req, res) => {
+router.get('/packages/:type/:id', async (req, res) => {
+    console.log(req.body)
     if (req.isAuthenticated()) {
 
         try {
-            const get_packages = await package.find().lean();
+            if(req.params.type==='raw'){
+                if(req.params.id!=='0'){
+                const get_package = await package.findOne({_id:req.params.id}).lean();
+                res.json({error:false, data:get_package})
+                }else{
+                    res.json({error:true, message:'No package found'})
+                }
+            }else{
+                const get_packages = await package.find().lean();
             res.render('admin-packages', { packages: get_packages })
+            }
         } catch (error) {
             console.log(error)
             throw error
@@ -267,6 +277,19 @@ router.post('/upload-package', upload.single('picture'), mongoSanitize(), xss(),
     } else {
         res.redirect("/admin/login")    }
 })
+router.post('/upload-link',upload.none(),async(req,res)=>{
+ const {name , location}=req.body;
+ try {
+    const create_link= new navlink({
+        Name:name,
+        url:'/packages/'+location
+    })
+    await create_link.save();
+    res.json({error:false, message:'upload successfull'})
+ } catch (error) {
+    console.log(error)
+ }
+})
 router.post('/update-package', upload.none(), mongoSanitize(), xss(), async (req, res) => {
     if (req.isAuthenticated()) {
 
@@ -357,6 +380,7 @@ router.post('/upload-blog', upload.single('picture'), mongoSanitize(), xss(), as
             }
 
         } catch (error) {
+            console.log(error)
             if (error instanceof mongoose.Error.ValidationError) {
                 const errorMessage = error.message;
                 res.json({ error: true, message: errorMessage })

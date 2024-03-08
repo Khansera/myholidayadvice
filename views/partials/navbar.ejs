@@ -1,7 +1,7 @@
 
 <header class=sticky-top>
     <div class="container-fluid d-flex justify-content-md-center align-items-center details py-2">
-    <a class="navbar-brand text-white" href=/home><img src="/images/Logo (1).webp" alt="" style=height:80px></a>
+    <a class="navbar-brand text-white" href=/home><img src="/images/escorted-logo.webp" alt="" style=height:80px></a>
     </div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid container-lg">
@@ -28,11 +28,13 @@
     Destinations <i class=ri-arrow-drop-down-line></i>
     </a>
     <ul class="dropdown-menu rounded-0 destinations pb-0">
-    <li><a class=dropdown-item href="/packages/kashmir">Kashmir</a></li>
-    <li><a class=dropdown-item href="/packages/ladakh">Ladakh</a></li>
+        <%links.forEach((item)=>{%>
+    <li><a class=dropdown-item href="<%=item.url%>"><%=item.Name%></a></li>
+
+        <%})%>
+    <!-- <li><a class=dropdown-item href="/packages/ladakh">Ladakh</a></li>
     <li><a class=dropdown-item href="/packages/dehli">Dehli/Agra/Jaipur</a></li>
-    <li><a class=dropdown-item href="/packages/himachalpradesh">Manali/Shimla</a></li>
-    <li><a class=dropdown-item href="/packages/himachalpradesh-punjab">Punjab/Amritsar</a></li>
+    <li><a class=dropdown-item href="/packages/himachal-pradesh">Manali/Shimla</a></li> --> 
 
 
 

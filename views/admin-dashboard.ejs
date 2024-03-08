@@ -58,7 +58,7 @@ Start Maintanence
 </a>
 </div>
 <div class="col-xxl-4 col-md-4 my-md-0 my-3">
-<a href=/admin/packages>
+<a href=/admin/packages/template/0>
 <div class="card info-card sales-card bg-secondary pointer">
 <div class=card-body>
 <h5 class="card-title text-white">Avalaible Packages</h5>
@@ -202,6 +202,7 @@ Start Maintanence
 </div>
 </section>
 </main>
-<script>function changeStatus(e){let t=document.getElementById("timeline").value;if(confirm("Are you sure you want to send ?")){let n=new FormData;if("Start Maintanence"===e.textContent.trim()){if(""===t)return alert("Please enter the timeline");n.set("status",!0)}else n.set("status",!1);n.append("timeline",t),fetch("/admin/maintenance",{method:"POST",body:n}).then((e=>e.json())).then((t=>{t.ON?(e.textContent="Stop Maintanence",alert(t.message)):(e.textContent="Start Maintanence",alert(t.message))})).catch((e=>{console.log(e)}))}}function checkDateTime(e){if(new Date(e)<new Date){document.getElementById("timeline").value="",alert("Past date and time cannot be set")}}</script>
+<script>function changeStatus(e){let t=document.getElementById("timeline").value;if(confirm("Are you sure you want to send ?")){let n=new FormData;if("Start Maintanence"===e.textContent.trim()){if(""===t)return alert("Please enter the timeline");n.set("status",!0)}else n.set("status",!1);n.append("timeline",t),fetch("/admin/maintenance",{method:"POST",body:n}).then((e=>e.json())).then((t=>{t.ON?(e.textContent="Stop Maintanence",alert(t.message)):(e.textContent="Start Maintanence",alert(t.message))})).catch((e=>{console.log(e)}))}}function checkDateTime(e){if(new Date(e)<new Date){document.getElementById("timeline").value="",alert("Past date and time cannot be set")}}window.addEventListener("pageshow",function(t){t.persisted&&location.reload()});
+</script>
 </body>
 </html>

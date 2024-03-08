@@ -13,17 +13,38 @@ const gallery = require('../db/models/gallery');
 const { sendEmail } = require('../utils/nodemailer');
 const { v4: uuidv4 } = require('uuid');
 const bookings = require('../db/models/bookings');
-
+const navlinks=require('../db/models/navLinks')
 //....................Special Functions...............///
 function generateId() {
     const uuid = uuidv4();
     return uuid
 }
+function parseString(inputString) {
+    return inputString.replace(/,/g, ' / ')
+                      .replace(/-/g, ' ');
+}
+function parseStringByCommas(inputString) {
+    const wordsArray = [];
+    let currentWord = '';
 
+    for (let i = 0; i < inputString.length; i++) {
+        const char = inputString[i];
 
-// router.get('/error',(req,res)=>{
-//     throw new Error('wrong')
-// })
+        if (char === ',') {
+            wordsArray.push(currentWord.trim());
+            currentWord = '';
+        } else {
+            currentWord += char;
+        }
+    }
+
+    if (currentWord.trim() !== '') {
+        wordsArray.push(currentWord.trim());
+    }
+
+    return wordsArray;
+}
+
 //............Home page...............//
 router.get(['/', '/home'], async (req, res) => {
     try {
@@ -35,18 +56,17 @@ router.get(['/', '/home'], async (req, res) => {
 
             return { stars, description, Name, authorAdmin };
         });
-
-        return res.render('index', { packages, blogs, reveiws: filteredData });
+        return res.render('index', { packages, blogs, reveiws: filteredData, links: res.locals.navbarData });
     } catch (error) {
         return res.json({ error: true, message: 'Error loading data' })
     }
 
 })
 router.get('/refund-policy', (req, res) => {
-    res.render('refund')
+    res.render('refund',{links: res.locals.navbarData})
 })
 router.get('/privacy-policy', (req, res) => {
-    res.render('privacy')
+    res.render('privacy',{links: res.locals.navbarData})
 })
 //.............get packages....................//
 router.get('/packages/:param', xss(), async (req, res) => {
@@ -55,18 +75,21 @@ router.get('/packages/:param', xss(), async (req, res) => {
     }
     const param = mongoSanitize.sanitize(req.params.param);
     try {
+       const wordsArray= parseStringByCommas(param);
+       console.log(wordsArray)
         if (param === 'all') {
             const packages = await pkg.find().lean();
-            return res.render('packages', { packages, type: param })
+            return res.render('packages', { packages, type: param,links: res.locals.navbarData })
         } else {
+
             const packages = await pkg.find({
                 $or: [
                     { pkgType: param },
-                    { location: param } 
+                    { location: { $in: wordsArray } }
                 ]
             }).lean();
             if (packages.length > 0) {
-                return res.render('packages', { packages, type: param })
+                return res.render('packages', { packages, type: parseString(param),links: res.locals.navbarData })
             } else {
                 return res.json({ error: true, message: 'no package found' })
             }
@@ -84,7 +107,7 @@ router.get('/blog/details/:blog_id', xss(), async (req, res) => {
     const blog_id = mongoSanitize.sanitize(req.params.blog_id);
     try {
         const blogs = await blog.findOne({ _id: blog_id }).lean();
-        return res.render('blog-details', { blogs })
+        return res.render('blog-details', { blogs,links: res.locals.navbarData })
     } catch (error) {
         console.error(error)
         res.json({ error: true, message: error })
@@ -99,7 +122,7 @@ router.get('/packages/details/:pkg_id', xss(), async (req, res) => {
     try {
         const packages = await pkg.findOne({ _id: pkg_id }).lean();
 
-        return res.render('package-details', { packages })
+        return res.render('package-details', { packages,links: res.locals.navbarData })
 
     } catch (error) {
         console.error(error)
@@ -110,7 +133,7 @@ router.get('/packages/details/:pkg_id', xss(), async (req, res) => {
 router.get('/gallery', async (req, res) => {
     try {
         const images = await gallery.find().lean();
-        res.render('gallery', { images });
+        res.render('gallery', { images,links: res.locals.navbarData });
 
     } catch (error) {
         console.error(error)
@@ -119,7 +142,7 @@ router.get('/gallery', async (req, res) => {
 //................team..................//
 router.get('/team', async (req, res) => {
     try {
-        res.render('team');
+        res.render('team',{links: res.locals.navbarData});
 
     } catch (error) {
         console.error(error)
@@ -128,7 +151,7 @@ router.get('/team', async (req, res) => {
 //................About Us...........................//
 router.get('/about', async (req, res) => {
     try {
-        res.render('about');
+        res.render('about',{links: res.locals.navbarData});
 
     } catch (error) {
         console.error(error)
@@ -211,7 +234,7 @@ router.get('/post-reveiw/:uniqueId', async (req, res) => {
         if (!searchId) {
             res.json({ error: true, message: 'invalid Id' })
         } else {
-            res.render('reveiw', { user: { name: searchId.Name, id: searchId.uniqueId } })
+            res.render('reveiw', { user: { name: searchId.Name, id: searchId.uniqueId ,links: res.locals.navbarData} })
         }
     } catch (error) {
         console.error(error)

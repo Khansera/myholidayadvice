@@ -1,0 +1,1 @@
+function loader(e){let t=document.querySelector(".gl-loader"),n=document.querySelector(".info");n.classList.remove("changed"),e?(n.textContent="Converting Image to Webp Format",t.style.display="block",setTimeout(()=>{n.textContent="Submitting Data",n.classList.add("changed")},4e3)):t.style.display="none"}

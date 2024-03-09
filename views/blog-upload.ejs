@@ -6,6 +6,7 @@
 <title>Blog Upload</title>
 <%- include('partials/headlinks') %>
 <style>.highlighted-text{background-color:#ff0}#popupMenu{display:none;position:absolute;background-color:#f9f9f9;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:5px;border-radius:5px;z-index:9999}label{color:#ffff}</style>
+<link rel=stylesheet href=/dist//admin/loader.css>
 </head>
 <body class=bg-secondary>
 <div class="container-fluid container-lg">
@@ -28,11 +29,11 @@
 <form id=blog-upload>
 <div class=mb-3>
 <label for=blogName>Heading</label>
-<input name=blogName class=form-control id=blogName>
+<input name=blogName class=form-control id=blogName required>
 </div>
 <div class=mb-3>
 <label for=author>Blog Author</label>
-<input name=author class=form-control id=author>
+<input name=author class=form-control id=author required>
 </div>
 <div class=mb-3>
 <label for=authorInfo>Author Info</label>
@@ -40,7 +41,7 @@
 </div>
 <div class=mb-3>
 <label for=category>Blog Category</label>
-<input name=category class=form-control id=category>
+<input name=category class=form-control id=category required>
 </div>
 <div class=mb-3>
 <div class="bg-primary my-3 p-2">
@@ -55,7 +56,7 @@
 </select>
 <button onclick=wrapText()>Wrap Text</button>
 </div>
-<textarea name=Description id=Description class=form-control>
+<textarea name=Description id=Description class=form-control required>
 
                         </textarea>
 </div>
@@ -64,8 +65,23 @@
 </div>
 </main>
 </div>
+<div class=gl-loader>
+<div class=popup-content>
+<h3 class="text-white info">Converting Image to Webp Format</h3>
+<div class=loader></div>
+</div>
+</div>
+
+<div class=gl-loader>
+<div class=popup-content>
+<h3 class="text-white info">Converting Image to Webp Format</h3>
+<div class=loader></div>
+</div>
+</div>
+
 <script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=/dist/admin/loader.js></script>
 <script src=/dist/admin/blog-upload.js></script>
 </body>
 </html>

@@ -1,187 +1,123 @@
 <!doctype html>
 <html lang=en>
-
 <head>
-    <meta charset=UTF-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>Admin: Packages</title>
-    <%- include('partials/headlinks') %>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.css">
-        <style>
-            .package {
-                transform: scale(1);
-                transition: all .5s ease-out
-            }
-
-            .package.fade-out {
-                transform: scale(0)
-            }
-
-            #alert {
-                display: none
-            }
-
-            .details {
-                .popup-content {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    max-width: 90%;
-                    border-radius: 5px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                }
-            }
-
-            .details>* {
-                color: White;
-            }
-
-            .popup {
-                position: fixed;
-                display: none;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                overflow-y: auto;
-                /* Enable vertical scrolling if content exceeds viewport height */
-                background-color: rgba(0, 0, 0, 0.5);
-                /* Semi-transparent background overlay */
-                z-index: 999;
-                /* Ensure popup appears above other content */
-            }
-
-            .show {
-                display: block;
-            }
-        </style>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Admin: Packages</title>
+<%- include('partials/headlinks') %>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.css>
+<style>.package{transform:scale(1);transition:all .5s ease-out}.package.fade-out{transform:scale(0)}#alert{display:none}.details{top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,.2)}.popup{position:fixed;display:none;top:0;left:0;width:100%;height:100%;overflow-y:auto;background-color:rgba(0,0,0,.5);z-index:999}.show{display:block}</style>
 </head>
-
 <body>
-    <div class="alert alert-success border-0 fixed-top mx-3 text-center" id=alert role=alert>
-    </div>
-    <div class="container-lg container-fluid">
-        <h1 class="text-center my-5">Available Packages</h1>
-        <div class="row px-2">
-            <%if(packages.length<=0){%>
-                <div
-                    class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">
-                    No Packages Avalaible</div>
-                <%}else{%>
-                    <%packages.forEach((item, index)=>{%>
-                        <div class="col-md-4 col-12 border rounded p-3 shadow-sm mb-2 package">
-                            <div class=card-body>
-                                <div class="icons mb-3">
-                                    <h4 class=tag-field><i class="ri-hashtag me-1"></i><span>
-                                            <%=item.tag%>
-                                        </span></h4>
-                                    <select name=tag onchange="Updatetagging(this,'tag-field','<%=index%>')" data-id="<%=item._id%>"  id=tag-select>
-                                        <option value="" selected>Update Tag</option>
-                                        <option value=normal>Normal</option>
-                                        <option value=popular>Popular</option>
-                                        <option value=special>Special</option>
-                                    </select>
-                                    <button id=update type=button onclick="showupdate()" class=btn
-                                        data-id="<%=item._id%>"><i class="ri-pencil-line fs-2 me-2"></i>Update</button>
-                                    <button id=delete onclick='Delete(this,"package")' type=button
-                                        data-id="<%=item._id%>" class=btn><i
-                                            class="ri-delete-bin-2-line fs-2 me-2"></i>Delete</button>
-                                </div>
+<div class="alert alert-success border-0 fixed-top mx-3 text-center" id=alert role=alert>
+</div>
+<div class="container-lg container-fluid">
+<h1 class="text-center my-5">Available Packages</h1>
+<div class="row px-2">
+<%if(packages.length<=0){%>
+<div class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">
+No Packages Avalaible</div>
+<%}else{%>
+<%packages.forEach((item, index)=>{%>
+<div class="col-md-4 col-12 border rounded p-3 shadow-sm mb-2 package">
+<div class=card-body>
+<div class="icons mb-3">
+<h4 class=tag-field><i class="ri-hashtag me-1"></i><span>
+<%=item.tag%>
+</span></h4>
+<select name=tag onchange='Updatetagging(this,"tag-field","<%=index%>")' data-id="<%=item._id%>" id=tag-select>
+<option value="" selected>Update Tag</option>
+<option value=normal>Normal</option>
+<option value=popular>Popular</option>
+<option value=special>Special</option>
+</select>
+<button id=update type=button onclick=showupdate() class=btn data-id="<%=item._id%>"><i class="ri-pencil-line fs-2 me-2"></i>Update</button>
+<button id=delete onclick='Delete(this,"package")' type=button data-id="<%=item._id%>" class=btn><i class="ri-delete-bin-2-line fs-2 me-2"></i>Delete</button>
+</div>
+<div class=my-3>
+<select name=pkgType onchange='Updatetagging(this,"pkgType","<%=index%>")' data-id="<%=item._id%>">
+<option value="" selected>Update Package type</option>
+<option value=domestic>Domestic</option>
+<option value=international>International</option>
+<option value=adventure>Adventure</option>
+</select>
+</div>
+<div class=my-3>
 
-                                <div class="my-3">
-                                        <select name=pkgType onchange="Updatetagging(this,'pkgType','<%=index%>')" data-id="<%=item._id%>">
-                                        <option value="" selected>Update Package type</option>
-                                        <option value=domestic>Domestic</option>
-                                        <option value=international>International</option>
-                                        <option value=adventure>Adventure</option>
-                                    </select>
-                                </div>
-                                <div class="my-3">
-                                    </select>
-                                        <select name=catagory onchange="Updatetagging(this,'catagory','<%=index%>')" data-id="<%=item._id%>" >
-                                        <option value="" selected>Update Catagory</option>
-                                        <option value="AdventureTours ">Adventure Tours</option>
-                            <option value="LeisureTours">Leisure Tours</option>
-                            <option value="AllPilgrimage">All Pilgrimage</option>
-                            <option value="Tours">Tours</option>
-                            <option value="Trekking">Trekking</option>
-                            <option value="Skiing">Skiing</option>
-                            <option value="BirdWatching"> Bird Watching</option>
-                            <option value="Fishing">Fishing </option>
-                            <option value="Rafting">Rafting</option>
-                            <option value="EducationalTours">Educational Tours</option>
-                            <option value="BudgetTours">Budget Tours</option>
-                            <option value="LuxuryTours">Luxury Tours </option>
-                            <option value="CulturalTours">Cultural Tours</option>
-                            <option value="GroupTours"> Group Tours</option>
-                            <option value="FamilyTours">Family Tours</option>
-                            <option value="JeepSafari"> Jeep Safari </option>
-                            <option value="Camping">Camping </option>
-                            <option value="CyclingTour"> Cycling Tour</option>
-                            <option value="BikeTour">Bike Tour</option>
-                            <option value="CarRentals"> Car Rentals</option>
-                            <option value="BusorCoachBookings"> Bus or Coach Bookings</option>
-                            <option value="Houseboat">Houseboat</option>
-                            <option value="Hotels">Hotels </option>
-                            <option value="Resorts">Resorts </option>
-                            <option value="Huts">Huts </option>
-                            <option value="MonumentalTours"> Monumental Tours</option>
-                            <option value="NationalParkTour">National Park Tour</option>
-                            <option value="Boating">Boating</option>
-                            <option value="Medical Tourism">Medical Tourism</option>
-                                    </select>
-                                </div>
-                                <h2 class="card-title text-center mb-4">
-                                    <%=item.Name%>
-                                </h2>
-                                <h4><i class="ri-calendar-schedule-fill text-primary me-2"></i>
-                                    <%=item.Duration%>
-                                </h4>
-                                <h5>Type:<span class="pkgType"><%=item.pkgType%></span> 
-                                </h5>
-                                <h5 >Category: <span class="catagory"><%=item.catagory%></span>
-                                </h5>
-                                <h5>Location: <%=item.location%>
-                                </h5>
-                        
-                                <h5>Destinations:-</h5>
-                                <div class=destinations>
-                                    <ul class="p-0 m-0">
-                                        <%item.Destinations.forEach((item,index)=>{%>
-                                            <li><i class="ri-map-pin-fill me-1 text-primary"></i>
-                                                <%=item%>
-                                            </li>
-                                            <%})%>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr class=mx-3>
-                            <div class="card-footer text-end border-0 bg-white">
-                                <a href="/packages/details/<%=item._id%>" class="btn-primary btn rounded-pill">Veiw
-                                    Details</a>
-                            </div>
-                        </div>
-                        <%})%>
-                            <%}%>
-        </div>
-        <div class="popup">
-
-            <div class="details p-3">
-                <span class="position-absolute top-0 end-0" onclick="closePopup(this)"><i
-                        class="ri-close-circle-fill fs-2 pointer me-2 text-primary"></i></span>
-                <h1 class="text-center text-white my-4">Edit Package</h1>
-
-            </div>
-        </div>
-    </div>
-    <script src="
-    https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.js
-    "></script>
-    <script src=/dist/admin/admin-packages.js></script>
-    <script src=/dist/admin/delete.js></script>
-    <script>
-    </script>
+<select name=catagory onchange='Updatetagging(this,"catagory","<%=index%>")' data-id="<%=item._id%>">
+<option value="" selected>Update Catagory</option>
+<option value="AdventureTours ">Adventure Tours</option>
+<option value=LeisureTours>Leisure Tours</option>
+<option value=AllPilgrimage>All Pilgrimage</option>
+<option value=Tours>Tours</option>
+<option value=Trekking>Trekking</option>
+<option value=Skiing>Skiing</option>
+<option value=BirdWatching> Bird Watching</option>
+<option value=Fishing>Fishing </option>
+<option value=Rafting>Rafting</option>
+<option value=EducationalTours>Educational Tours</option>
+<option value=BudgetTours>Budget Tours</option>
+<option value=LuxuryTours>Luxury Tours </option>
+<option value=CulturalTours>Cultural Tours</option>
+<option value=GroupTours> Group Tours</option>
+<option value=FamilyTours>Family Tours</option>
+<option value=JeepSafari> Jeep Safari </option>
+<option value=Camping>Camping </option>
+<option value=CyclingTour> Cycling Tour</option>
+<option value=BikeTour>Bike Tour</option>
+<option value=CarRentals> Car Rentals</option>
+<option value=BusorCoachBookings> Bus or Coach Bookings</option>
+<option value=Houseboat>Houseboat</option>
+<option value=Hotels>Hotels </option>
+<option value=Resorts>Resorts </option>
+<option value=Huts>Huts </option>
+<option value=MonumentalTours> Monumental Tours</option>
+<option value=NationalParkTour>National Park Tour</option>
+<option value=Boating>Boating</option>
+<option value="Medical Tourism">Medical Tourism</option>
+</select>
+</div>
+<h2 class="card-title text-center mb-4">
+<%=item.Name%>
+</h2>
+<h4><i class="ri-calendar-schedule-fill text-primary me-2"></i>
+<%=item.Duration%>
+</h4>
+<h5>Type:<span class=pkgType><%=item.pkgType%></span>
+</h5>
+<h5>Category: <span class=catagory><%=item.catagory%></span>
+</h5>
+<h5>Location: <%=item.location%>
+</h5>
+<h5>Destinations:-</h5>
+<div class=destinations>
+<ul class="p-0 m-0">
+<%item.Destinations.forEach((item,index)=>{%>
+<li><i class="ri-map-pin-fill me-1 text-primary"></i>
+<%=item%>
+</li>
+<%})%>
+</ul>
+</div>
+</div>
+<hr class=mx-3>
+<div class="card-footer text-end border-0 bg-white">
+<a href="/packages/details/<%=item._id%>" class="btn-primary btn rounded-pill">Veiw Details</a>
+</div>
+</div>
+<%})%>
+<%}%>
+</div>
+<div class=popup>
+<div class="details p-3">
+<span class="position-absolute top-0 end-0" onclick=closePopup(this)><i class="ri-close-circle-fill fs-2 pointer me-2 text-primary"></i></span>
+<h1 class="text-center text-white my-4">Edit Package</h1>
+</div>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.js></script>
+<script src=/dist/admin/admin-packages.js></script>
+<script src=/dist/admin/delete.js></script>
+<script></script>
 </body>
-
 </html>

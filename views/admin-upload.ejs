@@ -1,221 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <%- include('partials/headlinks') %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.css">
-
-    <style>
-        .itenary-container,
-        .important-points-container {
-            transform: scale(1);
-            transition: all 0.3s ease-out;
-        }
-
-        .itenary-container.fade-out {
-            transform: scale(0);
-        }
-
-        .important-points-container.fade-out {
-            transform: scale(0);
-
-        }
-        label{
-            color: #ffff;
-        }
-    </style>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title></title>
+<%- include('partials/headlinks') %>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.css>
+<style>.important-points-container,.itenary-container{transform:scale(1);transition:all .3s ease-out}.itenary-container.fade-out{transform:scale(0)}.important-points-container.fade-out{transform:scale(0)}label{color:#ffff}</style>
 </head>
+<body class=bg-secondary>
+<div class="container-fluid container-lg">
+<header>
+<h2 class="text-center my-3 text-white">Upload Package</h2>
+</header>
+<main>
+<div>
+<div class="d-flex justify-content-center mb-4">
+<img id=selectedAvatar src=https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg class=rounded-circle style=width:100px;height:100px;object-fit:cover alt="example placeholder">
+</div>
+<div class="d-flex justify-content-center mb-4">
+<div class="btn btn-primary btn-rounded">
+<label class="form-label text-white m-1" for=picture>Choose Image</label>
+<input type=file class="form-control d-none" id=picture accept=*/image name=picture onchange='displaySelectedImage(event,"selectedAvatar")'>
+</div>
+</div>
+</div>
+<div class=details>
+<form action="" id=package-upload>
+<div class=mb-3>
+<label for=packageName>Package Name</label>
+<input name=packageName class=form-control required id=packageName>
+</div>
+<div class=mb-3>
+<label for=Destinations>Destinations</label>
+<input name=Destinations class=form-control required id=Destinations>
+</div>
+<div class=mb-3>
+<label for=duration>Duration</label>
+<input name=duration class=form-control required id=duration placeholder="6 Days / 7 Nights">
+</div>
+<div class=mb-3>
+<label for=location>Location</label>
+<input name=location class=form-control required id=location placeholder="Enter location - Use hyphens instead of spaces. Example: himachal-pradesh">
+</div>
+<div class=mb-3>
+<label for=season>Season</label>
+<input name=season class=form-control id=season placeholder=optional>
+</div>
+<div class=mb-3>
+<label for=difficulty>Difficulty</label>
+<input name=difficulty class=form-control id=difficulty placeholder=optional>
+</div>
+<div class=mb-3>
+<label for=pkgType>Package Type</label>
+<select name=pkgType id=pkgType class=form-select required>
+<option value=domestic>Domestic</option>
+<option value=international>International</option>
+<option value=adventure>Adventure</option>
+</select>
+</div>
+<div class=mb-3>
+<label for=pkgCategory>Package Category</label>
+<select name=pkgCategory class=form-select id=pkgCategory required>
+<option value="AdventureTours ">Adventure Tours</option>
+<option value=LeisureTours>Leisure Tours</option>
+<option value=AllPilgrimage>All Pilgrimage</option>
+<option value=Tours>Tours</option>
+<option value=Trekking>Trekking</option>
+<option value=Skiing>Skiing</option>
+<option value=BirdWatching> Bird Watching</option>
+<option value=Fishing>Fishing </option>
+<option value=Rafting>Rafting</option>
+<option value=EducationalTours>Educational Tours</option>
+<option value=BudgetTours>Budget Tours</option>
+<option value=LuxuryTours>Luxury Tours </option>
+<option value=CulturalTours>Cultural Tours</option>
+<option value=GroupTours> Group Tours</option>
+<option value=FamilyTours>Family Tours</option>
+<option value=JeepSafari> Jeep Safari </option>
+<option value=Camping>Camping </option>
+<option value=CyclingTour> Cycling Tour</option>
+<option value=BikeTour>Bike Tour</option>
+<option value=CarRentals> Car Rentals</option>
+<option value=BusorCoachBookings> Bus or Coach Bookings</option>
+<option value=Houseboat>Houseboat</option>
+<option value=Hotels>Hotels </option>
+<option value=Resorts>Resorts </option>
+<option value=Huts>Huts </option>
+<option value=MonumentalTours> Monumental Tours</option>
+<option value=NationalParkTour>National Park Tour</option>
+<option value=Boating>Boating</option>
+<option value="Medical Tourism">Medical Tourism</option>
+</select>
+</div>
+<div class=mb-3 id=itenary>
+<label for=iternaryPoints>Itenary Points</label>
+<input type=number class=form-control id=iternaryPoints placeholder="type number of Points">
+<button type=button class="btn btn-sm btn-primary my-3" id=generate-inputs>Generate</button>
+</div>
+<div class=mb-3>
+<label for=aboutPlace>Place Info</label>
+<textarea type=text name=aboutPlace class=form-control id=aboutPlace placeholder="Enter About Place" required>                        </textarea>
+</div>
+<div class=mb-3 id=important-points>
+<label for=importantPoints>Important Points</label>
+<input type=number disabled class=form-control id=importantPoints placeholder="type number of Points">
+<button type=button class="btn btn- btn-primary my-3" id=generate-inputs-2 disabled>Generate</button>
+</div>
+<div class=mb-3>
+<label for=advisor>Advisor Name</label>
+<input name=advisor class=form-control id=advisor placeholder=Domestic/International/Adventure required>
+</div>
+<button type=submit class="btn btn-primary mb-3">Upload Package</button>
+</form>
+</div>
+</main>
+<footer>
+<div class="container-lg container-fluid">
+<h1 class="text-center text-white">Upload Nav Links</h1>
+<form id=links-upload>
+<div class=mb-3>
+<label for=name>Name</label>
+<input name=name class=form-control id=name placeholder="type the name for navlink">
+</div>
+<div class=mb-3>
+<label for=location>Location</label>
+<input name=location class=form-control id=location placeholder="type the location">
+</div>
+<button type=submit class="btn btn-primary mb-3">Upload Nav Link</button>
+</form>
+</div>
+</footer>
+</div>
+<div class=gl-loader>
+<div class=popup-content>
+<h3 class="text-white info">Converting Image to Webp Format</h3>
+<div class=loader></div>
+</div>
+</div>
 
-<body class="bg-secondary">
-    <div class="container-fluid container-lg">
-        <header>
-            <h2 class="text-center my-3 text-white">Upload Package</h2>
-        </header>
-        <!--Avatar-->
-        <main>
-            <div>
-
-                <div class="d-flex justify-content-center mb-4">
-                    <img id="selectedAvatar" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                        class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;"
-                        alt="example placeholder" />
-                </div>
-                <div class="d-flex justify-content-center mb-4">
-                    <div class="btn btn-primary btn-rounded">
-                        <label class="form-label text-white m-1" for="picture">Choose Image</label>
-                        <input type="file" class="form-control d-none" id="picture" accept="*/image" name="picture"
-                            onchange="displaySelectedImage(event, 'selectedAvatar')" />
-                    </div>
-                </div>
-            </div>
-            <div class="details">
-                <form action="" id="package-upload">
-                    <div class="mb-3">
-                        <label for="packageName">Package Name</label>
-                        <input type="text" name="packageName" class="form-control" id="packageName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Destinations">Destinations</label>
-                        <input type="text" name="Destinations" class="form-control" id="Destinations">
-                    </div>
-                    <div class="mb-3">
-                        <label for="duration">Duration</label>
-                        <input type="text" name="duration" class="form-control" id="duration"
-                            placeholder="6 Days / 7 Nights">
-                    </div>
-                    <div class="mb-3">
-                        <label for="location">Location</label>
-                        <input type="text" name="location" class="form-control" id="location"
-                            placeholder="Enter location - Use hyphens instead of spaces. Example: himachal-pradesh">
-                    </div>
-                    <div class="mb-3">
-                        <label for="season">Season</label>
-                        <input type="text" name="season" class="form-control" id="season"
-                            placeholder="optional">
-                    </div>
-                    <div class="mb-3">
-                        <label for="difficulty">Difficulty</label>
-                        <input type="text" name="difficulty" class="form-control" id="difficulty"
-                            placeholder="optional">
-                    </div>
-                    <div class="mb-3">
-                        <label for="pkgType">Package Type</label>
-                        <select name="pkgType" id="pkgType" class="form-select" >
-                            <option value="domestic">Domestic</option>
-                            <option value="international">International</option>
-                            <option value="adventure">Adventure</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pkgCategory">Package Category</label>
-                        <select name="pkgCategory" class="form-select" id="pkgCategory" >
-                            <option value="AdventureTours ">Adventure Tours</option>
-                            <option value="LeisureTours">Leisure Tours</option>
-                            <option value="AllPilgrimage">All Pilgrimage</option>
-                            <option value="Tours">Tours</option>
-                            <option value="Trekking">Trekking</option>
-                            <option value="Skiing">Skiing</option>
-                            <option value="BirdWatching"> Bird Watching</option>
-                            <option value="Fishing">Fishing </option>
-                            <option value="Rafting">Rafting</option>
-                            <option value="EducationalTours">Educational Tours</option>
-                            <option value="BudgetTours">Budget Tours</option>
-                            <option value="LuxuryTours">Luxury Tours </option>
-                            <option value="CulturalTours">Cultural Tours</option>
-                            <option value="GroupTours"> Group Tours</option>
-                            <option value="FamilyTours">Family Tours</option>
-                            <option value="JeepSafari"> Jeep Safari </option>
-                            <option value="Camping">Camping </option>
-                            <option value="CyclingTour"> Cycling Tour</option>
-                            <option value="BikeTour">Bike Tour</option>
-                            <option value="CarRentals"> Car Rentals</option>
-                            <option value="BusorCoachBookings"> Bus or Coach Bookings</option>
-                            <option value="Houseboat">Houseboat</option>
-                            <option value="Hotels">Hotels </option>
-                            <option value="Resorts">Resorts </option>
-                            <option value="Huts">Huts </option>
-                            <option value="MonumentalTours"> Monumental Tours</option>
-                            <option value="NationalParkTour">National Park Tour</option>
-                            <option value="Boating">Boating</option>
-                            <option value="Medical Tourism">Medical Tourism</option>
-
-
-                        </select>
-                    </div>
-                    <div class="mb-3" id="itenary">
-                        <label for="iternaryPoints">Itenary Points</label>
-                        <input type="number" class="form-control" id="iternaryPoints"
-                            placeholder="type number of Points">
-                        <button type="button" class="btn btn-sm btn-primary my-3" id="generate-inputs">Generate</button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="aboutPlace">Place Info</label>
-                        <textarea type="text" name="aboutPlace" class="form-control" id="aboutPlace"
-                            placeholder="Enter About Place">                        </textarea>
-
-                    </div>
-                    <div class="mb-3" id="important-points">
-                        <label for="importantPoints">Important Points</label>
-                        <input type="number" disabled class="form-control" id="importantPoints"
-                            placeholder="type number of Points">
-                        <button type="button" class="btn btn- btn-primary my-3"
-                            id="generate-inputs-2" disabled>Generate</button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="advisor">Advisor Name</label>
-                        <input type="text" name="advisor" class="form-control" id="advisor"
-                            placeholder="Domestic/International/Adventure">
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-3">Upload Package</button>
-                </form>
-            </div>
-
-        </main>
-   <footer>
-    <div class="container-lg container-fluid">
-      <h1 class="text-center text-white">Upload Nav Links</h1>
-      <form id="links-upload">
-
-        <div class="mb-3" >
-            <label for="name">Name</label>
-            <input type="text" name="name" class="form-control" id="name"
-                placeholder="type the name for navlink">
-        </div>
-        <div class="mb-3" >
-            <label for="location">Location</label>
-            <input type="text" name="location" class="form-control" id="location"
-            placeholder="type the location">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary mb-3">Upload Nav Link</button>
-
-      </form>
-    </div>
-   </footer>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="
-    https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.js
-    "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"
-        integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-        <script src="/dist/admin/package-upload.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
+<script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js integrity=sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.18.2/dist/tagify.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=/dist/admin/package-upload.js></script>
 </body>
-
 </html>

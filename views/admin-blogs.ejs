@@ -33,9 +33,53 @@
 <a href="/packages/details/<%=item._id%>" class="btn-primary btn rounded-pill">Veiw Details</a>
 </div>
 </div>
+<%})%><!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Document</title>
+<%- include('partials/headlinks') %>
+<style>.blog{transform:scale(1);transition:all .5s ease-out}.blog.fade-out{transform:scale(0)}</style>
+</head>
+<body>
+<div class="container-lg container-fluid">
+<h1 class="text-center my-5">Available Blogs</h1>
+<div class="row px-2">
+<%if(blogs.length<=0){%>
+<div class="top-0 bottom-0 d-flex end-0 start-0 justify-content-center align-items-center position-fixed">No Blogs Avalaible</div>
+<%}else{%>
+<%blogs.forEach((item)=>{%>
+<div class="col-md-4 col-12 border rounded p-3 shadow-sm mb-2 blog">
+<div class=card-body>
+<div class="icons mb-3">
+<button id=update type=btn class=btn data-id="<%=item._id%>"><i class="ri-pencil-line fs-2 me-2"></i>Update</button>
+<button id=delete onclick='Delete(this,"blog")' type=button data-id="<%=item._id%>" class=btn><i class="ri-delete-bin-2-line fs-2 me-2"></i>Delete</button>
+</div>
+<h2 class="card-title text-center mb-4">
+<%=item.blogHeading%>
+</h2>
+<p>
+<%=item.blogDescription%>
+</p>
+</div>
+<hr class=mx-3>
+<div class="card-footer text-end border-0 bg-white">
+<a href="/packages/details/<%=item._id%>" class="btn-primary btn rounded-pill">Veiw Details</a>
+</div>
+</div>
 <%})%>
 <%}%>
 </div>
+</div>
+
+<script src=/dist/admin/delete.js></script>
+</body>
+</html>
+<%}%>
+</div>
+</div>
+
 </div>
 <script src=/dist/admin/delete.js></script>
 </body>

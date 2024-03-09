@@ -26,7 +26,27 @@ function generateId(){
        return uuid
 }
 
+function parseStringByCommas(inputString) {
+    const wordsArray = [];
+    let currentWord = '';
 
+    for (let i = 0; i < inputString.length; i++) {
+        const char = inputString[i];
+
+        if (char === ',') {
+            wordsArray.push(currentWord.trim());
+            currentWord = '';
+        } else {
+            currentWord += char;
+        }
+    }
+
+    if (currentWord.trim() !== '') {
+        wordsArray.push(currentWord.trim());
+    }
+
+    return wordsArray;
+}
 
 
 router.post("/register",upload.none(), function (req, res) { 
@@ -257,35 +277,53 @@ router.post('/upload-package', upload.single('picture'), mongoSanitize(), xss(),
                 return res.json({ success: true, message: 'Upload Successfull' })
 
 
+            }else{
+                res.json({error:true, message:'Image or Feild is Empty'})
             }
 
         } catch (error) {
             console.log(error)
-            if (error instanceof mongoose.Error.ValidationError) {
-                const errorMessage = error.message;
-                return res.json({ error: true, message: errorMessage })
-            } else {
+                            return res.json({ error: true, message: error })
 
-                if (error.code === 11000) {
-                    return res.json({ error: true, message: "Duplicate Image Url Found" })
-                } else {
-                    return res.json({ error: true, message: "An error occured please contact us" })
-                }
-            }
+            // console.log(error)
+            // if (error instanceof mongoose.Error.ValidationError) {
+            //     const errorMessage = error.message;
+            //     return res.json({ error: true, message: errorMessage })
+            // } else {
+
+            //     if (error.code === 11000) {
+            //         return res.json({ error: true, message: "Duplicate Image Url Found" })
+            //     } else {
+            //         return res.json({ error: true, message: "An error occured please contact us" })
+            //     }
+            // }
 
         }
     } else {
         res.redirect("/admin/login")    }
 })
+
 router.post('/upload-link',upload.none(),async(req,res)=>{
  const {name , location}=req.body;
  try {
+    if(req.body){
+    const wordsArray= parseStringByCommas(location);
+    console.log(wordsArray)
+    const packages = await package.find({location: { $in: wordsArray }}).lean();
+    if(packages.length>1){
     const create_link= new navlink({
         Name:name,
         url:'/packages/'+location
     })
     await create_link.save();
     res.json({error:false, message:'upload successfull'})
+}else{
+    res.json({error:true, message:'Invalid location'})
+
+}
+    }else{
+        res.json({error:true, message:'Please fill all the required feilds'})
+    }
  } catch (error) {
     console.log(error)
  }
@@ -343,6 +381,8 @@ router.post('/upload-reveiw', upload.none(), mongoSanitize(), xss(), async (req,
                 })
                 await create_reveiw.save();
                 res.json({ success: true, message: 'Upload Successfull' })
+            }else{
+                res.json({error:true, message:'req.body is undefined / data is empty'})
             }
 
         } catch (error) {
@@ -377,6 +417,8 @@ router.post('/upload-blog', upload.single('picture'), mongoSanitize(), xss(), as
 
 
 
+            }else{
+                return res.json({error:true, message:'Image / data empty'})
             }
 
         } catch (error) {
@@ -405,14 +447,16 @@ router.post('/upload-image', upload.single('picture'), mongoSanitize(), xss(), a
             if (req.file && req.body) {
                 await sharp(req.file.buffer)
                     .webp({ lossless: true })
-                    .toFile('images/gallery/' + req.file.originalname);
+                    .toFile('images/gallery/' + path.parse(req.file.originalname).name + '.webp');
                 const new_image = new image({
-                    ImageUrl: '/images/gallery/' + req.file.originalname,
+                    ImageUrl: '/images/gallery/' + path.parse(req.file.originalname).name + '.webp',
                     ImageHeading: Heading,
                 })
 
                 await new_image.save();
                 res.json({ success: true, message: 'Upload Successfull' })
+            }else{
+                res.json({erorr:true,message:'Image / data not found'})
             }
 
         } catch (error) {
